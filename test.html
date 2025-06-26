@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Effect</title>
+    <!-- Bootstrap CSS (예시) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 여기에 아래 CSS 코드를 추가합니다 */
+        body {
+            background-color: #f8f9fa;
+            padding: 50px;
+        }
+
+        .row {
+            display: flex; /* Flexbox 사용하여 간격 조절 */
+            justify-content: center; /* 가운데 정렬 */
+            gap: 20px; /* 아이템 간 간격 */
+        }
+
+        .col-md-3 {
+            /* Bootstrap 기본 패딩 제거 또는 조정 */
+            padding: 0;
+            margin-bottom: 20px; /* 아래쪽 여백 */
+            flex-basis: calc(25% - 15px); /* 4개 항목이 나란히 오도록 너비 조정 (간격 고려) */
+            max-width: calc(25% - 15px);
+        }
+
+        .item-card {
+            position: relative; /* 자식 요소인 오버레이를 absolute로 위치시키기 위함 */
+            overflow: hidden; /* 오버레이가 넘치지 않게 */
+            cursor: pointer;
+            border-radius: 8px; /* 모서리 둥글게 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 그림자 효과 */
+            transition: box-shadow 0.3s ease; /* 그림자 애니메이션 */
+        }
+
+        .item-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .item-card a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            position: relative; /* 오버레이를 위한 relative */
+        }
+
+        .item-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease; /* 호버 시 이미지 확대 애니메이션 */
+        }
+
+        /* 오버레이 스타일 */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(128, 0, 128, 0.7); /* 보라색 (purple) 70% 투명도 */
+            display: flex;
+            justify-content: center; /* 텍스트 수평 중앙 정렬 */
+            align-items: center; /* 텍스트 수직 중앙 정렬 */
+            opacity: 0; /* 초기에는 숨김 */
+            visibility: hidden; /* 접근성 고려 */
+            transition: opacity 0.3s ease, visibility 0.3s ease; /* 부드러운 전환 효과 */
+            border-radius: 8px; /* 부모와 동일하게 */
+        }
+
+        .overlay-text {
+            color: white;
+            font-size: 1.5rem; /* 글자 크기 */
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* 호버 시 효과 */
+        .item-card a:hover .overlay {
+            opacity: 1; /* 보이게 함 */
+            visibility: visible; /* 보이게 함 */
+        }
+
+        .item-card a:hover img {
+            transform: scale(1.05); /* 이미지를 약간 확대 */
+        }
+
+        /* 반응형 디자인 (Bootstrap col-md-3 동작 유지) */
+        @media (max-width: 768px) {
+            .col-md-3 {
+                flex-basis: calc(50% - 15px); /* 모바일에서는 2개씩 */
+                max-width: calc(50% - 15px);
+            }
+        }
+        @media (max-width: 576px) {
+            .col-md-3 {
+                flex-basis: calc(100% - 15px); /* 더 작은 화면에서는 1개씩 */
+                max-width: calc(100% - 15px);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="item-card">
+                <a href="assets/pages/market.html">
+                    <img src="https://via.placeholder.com/300x200/0000FF/FFFFFF?text=Item+01" alt="마켓 페이지 1">
+                    <div class="overlay">
+                        <p class="overlay-text">Item 01 설명</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="item-card">
+                <a href="assets/pages/market.html">
+                    <img src="https://via.placeholder.com/300x200/00FF00/FFFFFF?text=Item+02" alt="마켓 페이지 2">
+                    <div class="overlay">
+                        <p class="overlay-text">Item 02 설명</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="item-card">
+                <a href="assets/pages/market.html">
+                    <img src="https://via.placeholder.com/300x200/FF0000/FFFFFF?text=Item+03" alt="마켓 페이지 3">
+                    <div class="overlay">
+                        <p class="overlay-text">Item 03 설명</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="item-card">
+                <a href="assets/pages/market.html">
+                    <img src="https://via.placeholder.com/300x200/FFFF00/000000?text=Item+04" alt="마켓 페이지 4">
+                    <div class="overlay">
+                        <p class="overlay-text">Item 04 설명</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (선택 사항, 레이아웃에 필요 없음) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
